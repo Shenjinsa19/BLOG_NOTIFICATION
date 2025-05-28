@@ -1,0 +1,18 @@
+{% extends "blogs/base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  <label for="id_username">Username:</label>
+  <input type="text" name="username" id="id_username" required>
+
+  <label for="id_password">Password:</label>
+  <input type="password" name="password" id="id_password" required>
+
+  <button type="submit">Login</button>
+</form>
+{% if form.errors %}
+  <p style="color: red;">Invalid username or password.</p>
+{% endif %}
+{% endblock %}

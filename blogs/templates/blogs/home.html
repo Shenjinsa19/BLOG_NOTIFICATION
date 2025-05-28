@@ -1,0 +1,13 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div style="text-align: center; margin-bottom: 20px;">
+    <h2>This is the homepage.</h2>
+  </div>
+  
+  <p>Welcome to my blog! Here you can find the latest posts, updates, and interesting articles.</p>
+  <p>Feel free to browse around, leave comments, and enjoy the content.</p>
+  <p>Don't forget to <a href="{% url 'register' %}">register</a> or <a href="{% url 'login' %}">log in</a> to participate actively.</p>
+{% endblock %}
