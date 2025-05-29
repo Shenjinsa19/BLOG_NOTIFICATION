@@ -52,30 +52,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'blog_notification.urls'
 
-# TEMPLATES = [
-#     {
-#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-#         'DIRS': [],
-#         'APP_DIRS': True,
-#         'OPTIONS': {
-#             'context_processors': [
-#                 'django.template.context_processors.request',
-#                 'django.contrib.auth.context_processors.auth',
-#                 'django.contrib.messages.context_processors.messages',
-#             ],
-#         },
-#     },
-# ]
-from pathlib import Path
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # Required backend
-        'DIRS': [BASE_DIR / 'templates'],  # Your global templates folder
-        'APP_DIRS': True,  # Look for templates inside apps automatically
+        'BACKEND': 'django.template.backends.django.DjangoTemplates', 
+        'DIRS': [BASE_DIR / 'templates'], 
+        'APP_DIRS': True,  
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -101,16 +88,32 @@ WSGI_APPLICATION = 'blog_notification.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',  # Use MySQL backend
+#         'NAME': 'blog_notification_db',  # The name of your MySQL database
+#         'USER': 'root',     # The username for your MySQL database
+#         'PASSWORD': '20042005',  # The password for your MySQL user
+#         'HOST': 'localhost',           # The host where your MySQL database is running (usually localhost)
+#         'PORT': '3306',                # The port number for MySQL(default is 3306)
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Use MySQL backend
-        'NAME': 'blog_notification_db',  # The name of your MySQL database
-        'USER': 'root',     # The username for your MySQL database
-        'PASSWORD': '20042005',  # The password for your MySQL user
-        'HOST': 'localhost',           # The host where your MySQL database is running (usually localhost)
-        'PORT': '3306',                # The port number for MySQL(default is 3306)
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',                  # database name after last slash
+        'USER': 'root',                     # username after //
+        'PASSWORD': 'wzuRqcZWjxLLxjzjJhJASqMxACdNIuDv',  # password after colon
+        'HOST': 'turntable.proxy.rlwy.net',# host before colon in domain
+        'PORT': '20642',                   # port number after colon
     }
 }
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -153,5 +156,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'post_list'    # Redirect after login
+LOGIN_REDIRECT_URL = 'post_list'   
 LOGOUT_REDIRECT_URL = '/'
