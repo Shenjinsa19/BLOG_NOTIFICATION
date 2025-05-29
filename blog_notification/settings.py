@@ -111,7 +111,7 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['blog-project32.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['blog-notification.onrender.com', 'localhost', '127.0.0.1']
 
 
 
