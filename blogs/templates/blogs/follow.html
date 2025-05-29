@@ -1,17 +1,25 @@
 {% if user.is_authenticated and user != post.author %}
   {% if post.author.id in user.follows.values_list('author_id', flat=True) %}
     <!-- Unfollow button -->
-    <form method="post" action="{% url 'follow_toggle' post.author.id %}">
+    <form method="post" action="{% url 'follow_toggle' post.author.id %}" 
+          class="unfollow-form" 
+          style="display:inline;">
       {% csrf_token %}
-      <button type="submit" style="background-color:#d9534f; color:white; border:none; padding:6px 12px; border-radius:3px;">
+      <button type="submit" 
+              class="btn-unfollow" 
+              style="background-color: #d9534f; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer;">
         Unfollow
       </button>
     </form>
   {% else %}
     <!-- Follow button -->
-    <form method="post" action="{% url 'follow_toggle' post.author.id %}">
+    <form method="post" action="{% url 'follow_toggle' post.author.id %}" 
+          class="follow-form" 
+          style="display:inline;">
       {% csrf_token %}
-      <button type="submit" style="background-color:#0275d8; color:white; border:none; padding:6px 12px; border-radius:3px;">
+      <button type="submit" 
+              class="btn-follow" 
+              style="background-color: #0275d8; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer;">
         Follow
       </button>
     </form>

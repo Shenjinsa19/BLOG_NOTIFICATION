@@ -1,11 +1,18 @@
 {% extends "blogs/base.html" %}
 {% block title %}Delete Post{% endblock %}
 {% block content %}
-<h2>Delete Post</h2>
-<p>Are you sure you want to delete the post titled "<strong>{{ post.title }}</strong>"?</p>
-<form method="post">
+<h2 class="delete-title" style="margin-bottom: 20px;">Delete Post</h2>
+<p class="delete-confirmation" style="margin-bottom: 15px;">
+  Are you sure you want to delete the post titled 
+  <strong style="font-weight: bold;">{{ post.title }}</strong>?
+</p>
+<form method="post" class="delete-form" style="display: flex; gap: 10px; align-items: center;">
   {% csrf_token %}
-  <button type="submit">Yes, delete</button>
-  <a href="{% url 'post_detail' post.pk %}">Cancel</a>
+  <button type="submit" class="btn-delete" style="background-color: #d9534f; color: white; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer;">
+    Yes, delete
+  </button>
+  <a href="{% url 'post_detail' post.pk %}" class="btn-cancel" style="color: #004080; text-decoration: underline; cursor: pointer;">
+    Cancel
+  </a>
 </form>
 {% endblock %}

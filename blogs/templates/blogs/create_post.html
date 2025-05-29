@@ -1,11 +1,27 @@
 {% extends "blogs/base.html" %}
 {% block title %}{% if edit %}Edit{% else %}Create{% endif %} Post{% endblock %}
 {% block content %}
-<h2>{% if edit %}Edit{% else %}Create{% endif %} Post</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">{% if edit %}Update{% else %}Create{% endif %}</button>
-</form>
-<p><a href="{% url 'post_list' %}">Back to Posts</a></p>
+  <h2 class="post-heading" style="font-size: 24px; margin-bottom: 20px; color: #004080;">
+    {% if edit %}Edit{% else %}Create{% endif %} Post
+  </h2>
+  <form method="post" class="post-form" style="max-width: 600px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn-submit" style="
+      background: #004080;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 14px;
+    ">
+      {% if edit %}Update{% else %}Create{% endif %}
+    </button>
+  </form>
+  <p class="back-link" style="margin-top: 15px;">
+    <a href="{% url 'post_list' %}" style="color: #004080; text-decoration: none; font-weight: bold;">
+      Back to Posts
+    </a>
+  </p>
 {% endblock %}

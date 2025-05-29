@@ -2,33 +2,36 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<article>
-  <h2>{{ post.title }}</h2>
-  <p>
-    <em>
-      By {{ post.author.username }}
-      {% if user.is_authenticated and user != post.author %}
-        <form method="post" action="{% url 'follow_toggle' post.author.id %}" style="display:inline;">
-          {% csrf_token %}
-          {% if post.author.id in followed_authors %}
-            <button type="submit" style="background:none; border:none; color:blue; cursor:pointer;">(Unfollow)</button>
-          {% else %}
-            <button type="submit" style="background:none; border:none; color:blue; cursor:pointer;">(Follow)</button>
-          {% endif %}
-        </form>
-      {% endif %}
-    </em> on {{ post.created_at|date:"M d, Y H:i" }}
+<article class="post-article" style="max-width: 800px; margin: 0 auto;">
+  <h2 class="post-title" style="margin-bottom: 10px; font-size: 24px;">{{ post.title }}</h2>
+  <p class="post-meta" style="font-style: italic; margin-bottom: 15px; color: #555;">
+    By <span class="post-author" style="font-weight: bold;">{{ post.author.username }}</span>
+    {% if user.is_authenticated and user != post.author %}
+      <form method="post" action="{% url 'follow_toggle' post.author.id %}" style="display: inline; margin-left: 10px;">
+        {% csrf_token %}
+        {% if post.author.id in followed_authors %}
+          <button type="submit" class="btn-unfollow" style="background: none; border: none; color: #0275d8; cursor: pointer; font-size: 14px;">(Unfollow)</button>
+        {% else %}
+          <button type="submit" class="btn-follow" style="background: none; border: none; color: #0275d8; cursor: pointer; font-size: 14px;">(Follow)</button>
+        {% endif %}
+      </form>
+    {% endif %}
+    on <time class="post-date" style="color: #666;">{{ post.created_at|date:"M d, Y H:i" }}</time>
   </p>
 
-  <div style="white-space: pre-wrap;">{{ post.content }}</div>
+  <div class="post-content" style="white-space: pre-wrap; font-size: 16px; line-height: 1.5; margin-bottom: 20px;">
+    {{ post.content }}
+  </div>
 
   {% if user.is_authenticated and user == post.author %}
-    <p>
-      <a href="{% url 'post_edit' post.pk %}">Edit</a> |
-      <a href="{% url 'post_delete' post.pk %}">Delete</a>
+    <p class="post-actions" style="margin-bottom: 20px;">
+      <a href="{% url 'post_edit' post.pk %}" class="edit-link" style="color: #004080; text-decoration: underline; margin-right: 10px;">Edit</a> |
+      <a href="{% url 'post_delete' post.pk %}" class="delete-link" style="color: #d9534f; text-decoration: underline; margin-left: 10px;">Delete</a>
     </p>
   {% endif %}
 
-  <p><a href="{% url 'post_list' %}">Back to Posts</a></p>
+  <p class="back-link" style="text-align: left;">
+    <a href="{% url 'post_list' %}" style="color: #004080; text-decoration: underline;">Back to Posts</a>
+  </p>
 </article>
 {% endblock %}

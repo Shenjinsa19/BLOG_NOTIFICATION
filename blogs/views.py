@@ -19,7 +19,7 @@ def register(request):
             user = form.save()
             login(request, user)
             messages.success(request, 'Registration successful.')
-            return redirect('post_list')
+            return redirect('login')
         else:
             messages.error(request, 'Please fix the errors below.')
     else:

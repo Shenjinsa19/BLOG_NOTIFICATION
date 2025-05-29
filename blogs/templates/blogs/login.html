@@ -1,18 +1,32 @@
 {% extends "blogs/base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<h2>Login</h2>
-<form method="post">
+<h2 class="login-title" style="font-size: 24px; margin-bottom: 20px; color: #004080;">Login</h2>
+
+<form method="post" class="login-form" style="max-width: 400px; margin: 0 auto;">
   {% csrf_token %}
-  <label for="id_username">Username:</label>
-  <input type="text" name="username" id="id_username" required>
+  
+  <label for="id_username" class="login-label" style="display: block; margin-bottom: 5px; font-weight: bold;">Username:</label>
+  <input type="text" name="username" id="id_username" required
+         class="login-input" style="width: 100%; padding: 8px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 3px; box-sizing: border-box; font-size: 14px;">
 
-  <label for="id_password">Password:</label>
-  <input type="password" name="password" id="id_password" required>
+  <label for="id_password" class="login-label" style="display: block; margin-bottom: 5px; font-weight: bold;">Password:</label>
+  <input type="password" name="password" id="id_password" required
+         class="login-input" style="width: 100%; padding: 8px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 3px; box-sizing: border-box; font-size: 14px;">
 
-  <button type="submit">Login</button>
+  <button type="submit" class="btn-submit" style="
+    background: #004080;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+  ">Login</button>
 </form>
+
 {% if form.errors %}
-  <p style="color: red;">Invalid username or password.</p>
+  <p class="error-message" style="color: red; margin-top: 15px;">Invalid username or password.</p>
 {% endif %}
 {% endblock %}

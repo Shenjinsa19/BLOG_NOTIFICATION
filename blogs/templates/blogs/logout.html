@@ -1,11 +1,20 @@
 {% extends 'blogs/base.html' %}
 
 {% block content %}
-  <div style="text-align: center; margin-top: 50px;">
-    <h2>Are you sure you want to log out?</h2>
-    <form method="post">
+  <div class="logout-container" style="text-align: center; margin-top: 50px;">
+    <h2 class="logout-heading" style="font-size: 24px; margin-bottom: 20px; color: #004080;">Are you sure you want to log out?</h2>
+    <form method="post" class="logout-form" style="display: inline-block;">
       {% csrf_token %}
-      <button type="submit" style="padding: 10px 20px; margin-top: 20px; background-color: #dc2626; color: white; border: none; border-radius: 4px;">Yes, log me out</button>
+      <button type="submit" class="btn-logout" style="
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: #dc2626;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      ">Yes, log me out</button>
     </form>
   </div>
 {% endblock %}

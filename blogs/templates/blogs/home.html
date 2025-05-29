@@ -3,11 +3,21 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <div style="text-align: center; margin-bottom: 20px;">
-    <h2>This is the homepage.</h2>
+  <div class="home-header" style="text-align: center; margin-bottom: 20px;">
+    <h2 style="font-size: 28px; color: #004080;">This is the homepage.</h2>
   </div>
   
-  <p>Welcome to my blog! Here you can find the latest posts, updates, and interesting articles.</p>
-  <p>Feel free to browse around, leave comments, and enjoy the content.</p>
-  <p>Don't forget to <a href="{% url 'register' %}">register</a> or <a href="{% url 'login' %}">log in</a> to participate actively.</p>
+  <p class="home-intro" style="font-size: 16px; margin-bottom: 12px; color: #333;">
+    Welcome to my blog! Here you can find the latest posts, updates, and interesting articles.
+  </p>
+  <p class="home-info" style="font-size: 16px; margin-bottom: 12px; color: #333;">
+    Feel free to browse around, leave comments, and enjoy the content.
+  </p>
+  <p class="home-cta" style="font-size: 16px; color: #333;">
+    Don't forget to 
+    <a href="{% url 'register' %}" style="color: #004080; font-weight: bold; text-decoration: none;">register</a> 
+    or 
+    <a href="{% url 'login' %}" style="color: #004080; font-weight: bold; text-decoration: none;">log in</a> 
+    to participate actively.
+  </p>
 {% endblock %}

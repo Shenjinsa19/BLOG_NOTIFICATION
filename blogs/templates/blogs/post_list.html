@@ -1,15 +1,25 @@
 {% extends "blogs/base.html" %}
 {% block title %}Posts{% endblock %}
+
 {% block content %}
-<h2>All Posts</h2>
+<h2 class="posts-heading" style="margin-bottom: 20px; font-size: 28px; color: #004080;">All Posts</h2>
 
 {% for post in posts %}
-  <article style="border-bottom: 1px solid #ddd; padding: 10px 0;">
-    <h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
-    <p>By {{ post.author.username }} on {{ post.created_at|date:"M d, Y H:i" }}</p>
-    <p>{{ post.content|truncatechars:150 }}</p>
+  <article class="post-summary" style="border-bottom: 1px solid #ddd; padding: 15px 0;">
+    <h3 class="post-title" style="margin: 0 0 5px;">
+      <a href="{% url 'post_detail' post.pk %}" class="post-link" style="color: #004080; text-decoration: none;">
+        {{ post.title }}
+      </a>
+    </h3>
+    <p class="post-meta" style="margin: 0 0 8px; color: #555; font-style: italic; font-size: 14px;">
+      By <span class="post-author" style="font-weight: bold;">{{ post.author.username }}</span> on 
+      <time class="post-date">{{ post.created_at|date:"M d, Y H:i" }}</time>
+    </p>
+    <p class="post-excerpt" style="margin: 0; font-size: 15px; color: #333;">
+      {{ post.content|truncatechars:150 }}
+    </p>
   </article>
 {% empty %}
-  <p>No posts yet.</p>
+  <p class="no-posts-message" style="font-style: italic; color: #999;">No posts yet.</p>
 {% endfor %}
 {% endblock %}
