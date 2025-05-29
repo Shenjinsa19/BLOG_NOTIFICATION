@@ -80,3 +80,21 @@ def before_post_delete(sender, instance, **kwargs):
 @receiver(post_delete, sender=Post)
 def after_post_delete(sender, instance, **kwargs):
     logger.info(f"Post '{instance.title}' by {instance.author.username} has been deleted")
+
+
+
+
+# mail
+from django.core.mail import send_mail
+from django.conf import settings
+
+@receiver(post_save, sender=User)
+def send_welcome_email(sender, instance, created, **kwargs):
+    if created:
+        subject = 'Welcome to My Blog!'
+        message = f'Hi {instance.username}, thanks for registering at My Blog.'
+        from_email = settings.DEFAULT_FROM_EMAIL
+        recipient_list = [instance.email]
+
+        if recipient_list[0]:  # make sure user has an email
+            send_mail(subject, message, from_email, recipient_list)
