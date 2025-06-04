@@ -114,7 +114,8 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['blog-notification.onrender.com', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['blog-notification-p13s.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 
