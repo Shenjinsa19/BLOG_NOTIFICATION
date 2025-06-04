@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogs.apps.BlogsConfig',
+    'celery',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -164,12 +166,43 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 
-# settings.py
+# email not
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-EMAIL_HOST_USER = 'spmacavity@gmail.com'       # your email
-EMAIL_HOST_PASSWORD = 'siicktfvtluefkqm'    # your email app password or actual password (better use app password)
+EMAIL_HOST_USER = 'spmacavity@gmail.com'     
+EMAIL_HOST_PASSWORD = 'siicktfvtluefkqm'    
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# Celery Settings 
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERYD_FORCE_EXECV = True
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+
+#redis
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",  
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
+
+
+
+
+#memcache
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+        "LOCATION": "127.0.0.1:11211",
+    }
+}

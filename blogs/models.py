@@ -19,3 +19,5 @@ class Follow(models.Model):
 
     class Meta:
         unique_together = ('follower', 'author')
+
+

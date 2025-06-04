@@ -6,4 +6,5 @@ class BlogsConfig(AppConfig):
     name = 'blogs'
 
     def ready(self):
-        import blogs.signals  
+        from . import signals
+        

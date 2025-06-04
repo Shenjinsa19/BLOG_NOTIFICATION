@@ -98,3 +98,7 @@ def send_welcome_email(sender, instance, created, **kwargs):
 
         if recipient_list[0]:  # make sure user has an email
             send_mail(subject, message, from_email, recipient_list)
+
+
+
+

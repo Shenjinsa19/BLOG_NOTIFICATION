@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from .models import Post,Follow
 from blogs.forms import PostForm
-from django.contrib.auth import login  # for logging in the user
+from django.contrib.auth import login  # for logg
 from django.contrib import messages
 from django.shortcuts import render
 
@@ -54,15 +54,44 @@ def follow_toggle(request, user_id):
 
 
 
+# def post_list(request):
+#     posts = Post.objects.all().order_by('-created_at')
+#     return render(request, 'blogs/post_list.html', {'posts': posts})
+
+
+# from django.core.cache import cache
+# from .models import Post
+# from django.shortcuts import render
+# def post_list(request):
+#     posts = cache.get('post_list')
+#     if not posts:
+#         print("Fetching from DB...")
+#         posts = Post.objects.select_related('author').order_by('-created_at')
+#         cache.set('post_list', posts, timeout=60 * 5)  
+#     return render(request, 'blogs/post_list.html', {'posts': posts})
+
+
+from django.core.cache import cache
+from .models import Post
+from django.shortcuts import render
 def post_list(request):
-    posts = Post.objects.all().order_by('-created_at')
+    posts = cache.get('post_list')
+
+    if posts is None:
+        print("Fetching from DB...")
+        posts = Post.objects.select_related('author').order_by('-created_at')
+        cache.set('post_list', posts, timeout=10)  
+    else:
+        print("Fetching from cache...")
+
     return render(request, 'blogs/post_list.html', {'posts': posts})
+
+
 
 
 # def post_detail(request, pk):
 #     post = get_object_or_404(Post, pk=pk)
 #     user_follows_author = False
-
 #     if request.user.is_authenticated:
 #         user_follows_author =Follow.objects.filter(follower=request.user, author=post.author).exists()
 
@@ -124,6 +153,10 @@ def post_delete(request, pk):
         return redirect('post_list')
 
     return render(request, 'blogs/post_confirm_delete.html', {'post': post})
+
+
+
+
 
 
 
